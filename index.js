@@ -1,6 +1,5 @@
 // ! JANGAN DIMOFIDIKASI
-const dataBelanjaan = [
-  {
+const dataBelanjaan = [{
     id: "D-10001",
     nama: "Minyak Goreng Delima",
     harga: 25000,
@@ -21,10 +20,36 @@ const dataBelanjaan = [
 ];
 
 // boleh dimodifikasi bila ingin menggunakan deklarasi fungsi yang normal
-const listBelanjaan = null;
+const listBelanjaan = (items) => {
+  let orders = [];
+
+  for (let item = 0; item < items.length; item++) {
+    let order = "- " + items[item].nama + " x " + items[item].kuantitas + " = Rp. " + rupiah(items[item].harga * items[item].kuantitas);
+    orders.push(order);
+  }
+
+  return orders;
+};
 
 // boleh dimodifikasi bila ingin menggunakan deklarasi fungsi yang normal
-const totalBelanjaan = null;
+const totalBelanjaan = (items) => {
+
+  let totalOrders = null;
+
+  for (let item = 0; item < items.length; item++) {
+    totalOrders += items[item].harga * items[item].kuantitas;
+  }
+
+  return rupiah(totalOrders);
+
+};
+
+const rupiah = (number)=>{
+  return new Intl.NumberFormat("id-ID", {
+    style: "decimal",
+    currency: "IDR"
+  }).format(number);
+}
 
 // ! JANGAN DIMODIFIKASI
 const main = () => {
